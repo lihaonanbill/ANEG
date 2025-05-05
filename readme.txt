@@ -17,3 +17,24 @@ Draft.py 是用来画某一个特定更新序列下的状态轨迹图
 ControllerGenerator.py 是用来生成一个最佳的异步更新序列，并基于这个更新序列给出状态转移图
 
 AverageStable.py 生成随机序列，并计算随机更新到达不懂点的最短长度，平均长度等
+
+
+The author found that when multiplying the strategies of players using the semi-tensor product to represent the situation, 
+arranging the numbers in the state space in ascending order is equivalent to listing the situation in lexicographical order. 
+For example, there are two players, each with two strategies. Let them be 1,2. 
+    At this time, all the situations are arranged in lexicographical order from smallest to largest as 11,12,21. 22 And they are equivalent to 1,2,3,4 in the state space. 
+    Therefore, the author skips the transposition and idempotence operators in the semi-tensor product here and directly uses the situation information corresponding to the states (numbers) 
+    in the state space to calculate the state to be jumped to at the next moment based on the set SUR. The core idea of Game.py is like this. 
+
+As for the other several modules, they are mainly some auxiliary tasks, such as drawing state trajectory diagrams, 
+using BFS to find the shortest path, and generating random sequences to simulate the evolution process, etc. 
+
+Game.py is about constructing Game models and finally generating various asynchronous matrices, although it is designed for memory-driven ones. 
+But in fact, as long as the memory length is changed to 1 when setting the parameters, it can be used for ordinary one-step memory. 
+
+Draft.py is used to draw the state trajectory diagram under a specific update sequence. 
+
+ControllerGenerator.py is used to generate an optimal asynchronous update sequence. 
+
+Based on this update sequence, the state transition graph AverageStable.py is given to generate a random sequence, and the shortest length, average length, etc. 
+for the random update to reach the fixed point are calculated
